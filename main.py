@@ -1,13 +1,10 @@
 from fastapi import FastAPI
+from app.api import echo
 
 app = FastAPI()
 
-# 仮のメモデータ
-memos = [
-    {"id": 1, "title": "買い物リスト", "content": "卵、牛乳、パン"},
-    {"id": 2, "title": "やること", "content": "洗濯、掃除、読書"},
-]
+app.include_router(echo.router, prefix="/api", tags=["memos"])
 
-@app.get("/memos")
-def get_memos():
-    return {"memos": memos}
+@app.get("/")
+def root():
+    return {"message": "Hello from FastAPI backend!"}
