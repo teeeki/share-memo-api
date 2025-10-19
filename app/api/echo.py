@@ -1,4 +1,4 @@
-from app.schemas.echo import EchoResponse
+from app.model.echo import EchoResponse
 from fastapi import APIRouter, Request
 
 router = APIRouter()
