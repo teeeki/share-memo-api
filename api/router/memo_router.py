@@ -1,18 +1,18 @@
 from typing import List
 from api.schema.memo_schema import MemoModel
+from api.service import memo_service
 from fastapi import APIRouter
 
 router = APIRouter()
 
-@router.get("/")
-def root():
-    return {"message": "Hello from FastAPI backend!"}
 
-@router.post("/memo/")
+@router.post("/memo")
 async def create_memo():
     pass
 
 
-@router.get("/memo/", response_model=List[MemoModel], tags=["memo"])
+@router.get("/memo", response_model=List[MemoModel], tags=["memo"])
 async def get_memo():
-    return [MemoModel(user_id=1, title="サンプル", summary="サンプルsummary", content="サンプルcontent")]
+    
+    result = memo_service.get_memos()
+    return [MemoModel(**memo) for memo in result]

@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from crud_base import RawCRUD
+from .base_crud import RawCRUD
 
 class MemoCRUD:
     @classmethod
