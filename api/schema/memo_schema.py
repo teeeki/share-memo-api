@@ -1,8 +1,8 @@
 from pydantic import BaseModel
 
 class MemoModel(BaseModel):
+    user_id: int
     title: str
-    user: str
     summary: str
     content: str
     

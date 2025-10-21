@@ -1,11 +1,6 @@
 from fastapi import FastAPI
-from app.api import echo, memo_api
+from api.router import memo_router
 
 app = FastAPI()
 
-app.include_router(echo.router, prefix="/api", tags=["memos"])
-app.include_router(memo_api.router, prefix="/api", tags=["memos"])
-
-@app.get("/")
-def root():
-    return {"message": "Hello from FastAPI backend!"}
+app.include_router(memo_router.router, prefix="/api", tags=["memos"])
