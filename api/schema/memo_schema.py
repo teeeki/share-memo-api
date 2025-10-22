@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 
-class MemoModel(BaseModel):
+# memoのレスポンスモデル
+class MemoResponse(BaseModel):
     user_id: int
     title: str
     summary: str
