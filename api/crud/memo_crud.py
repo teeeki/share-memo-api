@@ -6,7 +6,7 @@ class MemoCRUD:
     def get_memos_by_user_ids(cls, session: Session, user_id: list[int]):
         base_query = """
             SELECT
-                u.user_id,
+                u.username,
                 m.title,
                 m.summary,
                 m.content
@@ -17,6 +17,7 @@ class MemoCRUD:
             \n
         """
         
+        # user_idが指定されている場合はuser_idで絞り込む
         if user_id:
             query + base_query + """
             WHERE

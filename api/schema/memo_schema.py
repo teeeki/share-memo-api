@@ -2,7 +2,7 @@ from pydantic import BaseModel
 
 # memoのレスポンスモデル
 class MemoResponse(BaseModel):
-    user_id: int
+    username: str
     title: str
     summary: str
     content: str

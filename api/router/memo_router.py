@@ -8,12 +8,12 @@ from sqlalchemy.orm import Session
 router = APIRouter()
 
 
-@router.post("/memo")
+@router.post("/create-memo")
 async def create_memo():
     pass
 
 
-@router.get("/memo", response_model=List[MemoResponse], tags=["memo"])
+@router.get("/get-memo", response_model=List[MemoResponse], tags=["memo"])
 async def get_memo(user_id: List[int]=Query(None), session: Session = Depends(get_db)):
     result = memo_service.get_memos(session, user_id=user_id)
     return [MemoResponse(**memo) for memo in result]
