@@ -10,3 +10,4 @@ Base = declarative_base()
 def get_db():
     with SessionLocal() as session:
         yield session
+

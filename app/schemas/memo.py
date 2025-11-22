@@ -6,4 +6,4 @@ class MemoResponse(BaseModel):
     title: str
     summary: str
     content: str
-    
+

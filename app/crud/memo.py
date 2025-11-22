@@ -1,9 +1,9 @@
 from sqlalchemy.orm import Session
-from .base_crud import RawCRUD
+from .base import RawCRUD
 
 class MemoCRUD:
     @classmethod
-    def get_memos_by_user_ids(cls, session: Session, user_id: list[int]):
+    def get_memos_by_user_ids(cls, session: Session, user_id: list[int] | None = None):
         base_query = """
             SELECT
                 u.username,
@@ -14,17 +14,16 @@ class MemoCRUD:
                 users u
             INNER JOIN
                 memos m ON u.user_id = m.user_id
-            \n
         """
         
         # user_idが指定されている場合はuser_idで絞り込む
         if user_id:
-            query + base_query + """
+            query = base_query + """
             WHERE
-                    u.user_id = ANY(:user_id)
+                u.user_id = ANY(:user_id)
             """
         else:
             query = base_query
 
+        return RawCRUD.fetchall(session, query, {"user_id": user_id})
 
-        return RawCRUD.fetchall(session, query, {"user_ids": user_id})

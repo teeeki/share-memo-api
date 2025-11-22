@@ -7,3 +7,4 @@ class RawCRUD:
     def fetchall(cls, session: Session, query: str, prm: dict[str, Any] | None = None):
         result = session.execute(text(query), prm)
         return [dict(row) for row in result.mappings().fetchall()]
+
